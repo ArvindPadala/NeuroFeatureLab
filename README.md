@@ -1,7 +1,7 @@
 # NeuroFeatureLab
 
 ## Overview
-Short explanation of the project.
+NeuroFeatureLab is a research-methods demonstration repository showing how to construct, train, evaluate, and interpret machine learning models for predicting post-traumatic epilepsy (PTE) patterns. The project processes simulated multi-modal neuroimaging markers (structural lesion burden, functional connectivity, and Amplitude of Low-Frequency Fluctuations) to showcase standard neuroimaging ML workflows.
 
 ## Motivation
 Inspired by MR-based imaging marker research for post-traumatic epilepsy prediction.
@@ -32,10 +32,42 @@ This dataset is used only to demonstrate research-methods implementation, model 
 This project uses simulated imaging-derived features and does not use real patient data.
 
 ## Project structure
-Show folder tree.
+```
+NeuroFeatureLab/
+├── README.md                 # Project documentation
+├── requirements.txt          # Python dependencies
+├── data/                     # Data directory (simulated features & subjects)
+│   ├── simulated_pte_features.csv
+│   ├── sample_subject_high_risk.json
+│   └── sample_subject_low_risk.json
+├── models/                   # Saved model checkpoints
+│   ├── best_model.pkl        # Best pipeline (RBF Kernel SVM)
+│   └── scaler.pkl            # StandardScaler state
+├── notebooks/                # Jupyter Notebooks
+│   ├── 01_generate_simulated_features.ipynb
+│   ├── 02_feature_extraction_demo.ipynb
+│   ├── 03_model_training_and_evaluation.ipynb
+│   └── 04_inference_and_explainability.ipynb
+├── outputs/                  # Plot outputs and comparison results
+│   ├── model_comparison.csv
+│   ├── roc_curve.png
+│   ├── confusion_matrix.png
+│   ├── connectivity_heatmap.png
+│   └── feature_importance.png
+└── src/                      # Source code modules
+    ├── simulate_features.py  # Synthetic data generation
+    ├── connectivity.py       # Functional connectivity computation
+    ├── alff.py               # ALFF feature extraction
+    ├── train_models.py       # Model training & validation
+    ├── explainability.py     # Permutation-based feature importance
+    └── inference.py          # Subject-level inference
+```
 
 ## Methods implemented
-Explain lesion-style features, connectivity, ALFF, ML models.
+- **Lesion-style features**: Simulated volume values representing regional lesion burden across temporal, occipital, cerebellum, and parietal regions.
+- **Functional Connectivity**: Pearson correlation computed from simulated BOLD fMRI signals. The upper triangle of the correlation matrix is flattened to extract unique undirected links.
+- **ALFF (Amplitude of Low-Frequency Fluctuations)**: Spectral amplitude values calculated from regional time-series in the typical slow fluctuation band (0.01 - 0.10 Hz) using Fast Fourier Transform (FFT).
+- **ML Models**: Comparison of Logistic Regression, Linear SVM, RBF SVM, Random Forest, and MLP Classifiers evaluated using 5-fold cross-validation.
 
 ## Phase 3: Feature Extraction Demo
 
@@ -100,15 +132,68 @@ Example inference command:
 
 ```bash
 python src/inference.py --input data/sample_subject_high_risk.json
+```
+
+Example Output:
+```
+Inference result
+----------------
+Prediction: PTE-like feature pattern
+PTE-like pattern probability: 1.000
+
+Note: This is a simulated research-methods demo, not a clinical tool.
+```
 
 ## Results
-Show model comparison table.
+After training the models on slightly overlapping simulated distributions, we get the following performance metrics:
+
+| Model | Test AUC | Accuracy | Precision | Recall | F1-Score | CV AUC Mean | CV AUC Std |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **RBF Kernel SVM** | **0.9956** | **0.9667** | **0.9667** | **0.9667** | **0.9667** | **0.9823** | **0.0180** |
+| MLP Classifier | 0.9878 | 0.9500 | 0.9508 | 0.9500 | 0.9508 | 0.9705 | 0.0138 |
+| Linear SVM | 0.9856 | 0.9667 | 0.9667 | 0.9667 | 0.9667 | 0.9701 | 0.0112 |
+| Logistic Regression | 0.9800 | 0.9333 | 0.9333 | 0.9333 | 0.9333 | 0.9712 | 0.0119 |
+| Random Forest | 0.9733 | 0.9167 | 0.9180 | 0.9167 | 0.9180 | 0.9748 | 0.0079 |
 
 ## Example inference
-Show command and sample output.
+Run inference on a single subject JSON vector using the best-performing model checkpoint:
+```bash
+# High-risk subject inference
+python src/inference.py --input data/sample_subject_high_risk.json
+
+# Low-risk subject inference
+python src/inference.py --input data/sample_subject_low_risk.json
+```
+
+Sample output for high-risk subject:
+```
+Inference result
+----------------
+Prediction: PTE-like feature pattern
+PTE-like pattern probability: 1.000
+
+Note: This is a simulated research-methods demo, not a clinical tool.
+```
 
 ## How to run
-Give setup commands.
+Set up the virtual environment, install dependencies, and execute the full pipeline:
+```bash
+# 1. Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Generate simulated dataset
+python src/simulate_features.py
+
+# 4. Compare models and save best model
+python src/train_models.py
+
+# 5. Generate permutation feature importances
+python src/explainability.py
+```
 
 ## Future extensions
 - Adapt to real neuroimaging data

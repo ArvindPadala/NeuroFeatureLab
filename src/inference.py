@@ -5,6 +5,9 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_MODEL_PATH = str(PROJECT_ROOT / "models" / "best_model.pkl")
+
 
 def load_subject_json(input_path: str) -> pd.DataFrame:
     """
@@ -24,7 +27,7 @@ def load_subject_json(input_path: str) -> pd.DataFrame:
 
 def run_inference(
     input_path: str,
-    model_path: str = "models/best_model.pkl"
+    model_path: str = DEFAULT_MODEL_PATH
 ):
     """
     Run inference on a single simulated subject feature vector.
@@ -73,7 +76,7 @@ def main():
 
     parser.add_argument(
         "--model",
-        default="models/best_model.pkl",
+        default=DEFAULT_MODEL_PATH,
         help="Path to trained model pipeline."
     )
 

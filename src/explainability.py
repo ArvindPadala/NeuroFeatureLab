@@ -2,15 +2,21 @@ import os
 import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_DATA_PATH = str(PROJECT_ROOT / "data" / "simulated_pte_features.csv")
+DEFAULT_MODEL_PATH = str(PROJECT_ROOT / "models" / "best_model.pkl")
+DEFAULT_OUTPUT_PATH = str(PROJECT_ROOT / "outputs" / "feature_importance.png")
 
 from sklearn.inspection import permutation_importance
 from sklearn.model_selection import train_test_split
 
 
 def generate_permutation_importance(
-    data_path: str = "data/simulated_pte_features.csv",
-    model_path: str = "models/best_model.pkl",
-    output_path: str = "outputs/feature_importance.png",
+    data_path: str = DEFAULT_DATA_PATH,
+    model_path: str = DEFAULT_MODEL_PATH,
+    output_path: str = DEFAULT_OUTPUT_PATH,
     top_n: int = 12
 ):
     """
@@ -80,4 +86,4 @@ if __name__ == "__main__":
     print("\nTop features:")
     print(importance_df.head(12))
     print("\nSaved output:")
-    print("- outputs/feature_importance.png")
+    print(f"- {DEFAULT_OUTPUT_PATH}")

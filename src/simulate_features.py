@@ -41,12 +41,12 @@ def generate_simulated_pte_features(
 
         # Lesion-style ROI features
         # Lower average lesion burden
-        "right_temporal_lesion_volume": np.random.normal(1.2, 0.35, n_per_class),
-        "left_temporal_lesion_volume": np.random.normal(1.1, 0.35, n_per_class),
-        "right_occipital_lesion_volume": np.random.normal(0.9, 0.30, n_per_class),
-        "left_occipital_lesion_volume": np.random.normal(0.8, 0.30, n_per_class),
-        "cerebellum_lesion_volume": np.random.normal(0.7, 0.25, n_per_class),
-        "right_parietal_lesion_volume": np.random.normal(0.9, 0.30, n_per_class),
+        "right_temporal_lesion_volume": np.random.normal(1.2, 0.40, n_per_class),
+        "left_temporal_lesion_volume": np.random.normal(1.1, 0.40, n_per_class),
+        "right_occipital_lesion_volume": np.random.normal(0.9, 0.35, n_per_class),
+        "left_occipital_lesion_volume": np.random.normal(0.8, 0.35, n_per_class),
+        "cerebellum_lesion_volume": np.random.normal(0.7, 0.30, n_per_class),
+        "right_parietal_lesion_volume": np.random.normal(0.9, 0.35, n_per_class),
 
         # ALFF-style features
         # Baseline low-frequency signal amplitude values
@@ -58,10 +58,10 @@ def generate_simulated_pte_features(
 
         # Functional connectivity-style features
         # Simulated correlation-like values
-        "temporal_occipital_connectivity": np.random.normal(0.25, 0.10, n_per_class),
-        "temporal_cerebellum_connectivity": np.random.normal(0.20, 0.10, n_per_class),
-        "frontal_temporal_connectivity": np.random.normal(0.30, 0.10, n_per_class),
-        "parietal_occipital_connectivity": np.random.normal(0.28, 0.10, n_per_class),
+        "temporal_occipital_connectivity": np.random.normal(0.25, 0.12, n_per_class),
+        "temporal_cerebellum_connectivity": np.random.normal(0.20, 0.12, n_per_class),
+        "frontal_temporal_connectivity": np.random.normal(0.30, 0.12, n_per_class),
+        "parietal_occipital_connectivity": np.random.normal(0.28, 0.12, n_per_class),
 
         "label": 0
     })
@@ -76,27 +76,27 @@ def generate_simulated_pte_features(
         # Lesion-style ROI features
         # Higher values in regions inspired by the paper:
         # temporal, occipital, cerebellum, and right parietal areas
-        "right_temporal_lesion_volume": np.random.normal(2.2, 0.50, n_per_class),
-        "left_temporal_lesion_volume": np.random.normal(2.0, 0.50, n_per_class),
-        "right_occipital_lesion_volume": np.random.normal(1.6, 0.45, n_per_class),
-        "left_occipital_lesion_volume": np.random.normal(1.4, 0.45, n_per_class),
-        "cerebellum_lesion_volume": np.random.normal(1.5, 0.40, n_per_class),
-        "right_parietal_lesion_volume": np.random.normal(1.4, 0.40, n_per_class),
+        "right_temporal_lesion_volume": np.random.normal(1.8, 0.50, n_per_class),
+        "left_temporal_lesion_volume": np.random.normal(1.6, 0.50, n_per_class),
+        "right_occipital_lesion_volume": np.random.normal(1.3, 0.45, n_per_class),
+        "left_occipital_lesion_volume": np.random.normal(1.1, 0.45, n_per_class),
+        "cerebellum_lesion_volume": np.random.normal(1.1, 0.40, n_per_class),
+        "right_parietal_lesion_volume": np.random.normal(1.2, 0.40, n_per_class),
 
         # ALFF-style features
         # Slightly altered low-frequency amplitude values
-        "right_temporal_alff": np.random.normal(0.58, 0.10, n_per_class),
-        "left_temporal_alff": np.random.normal(0.54, 0.10, n_per_class),
-        "right_occipital_alff": np.random.normal(0.55, 0.09, n_per_class),
-        "left_occipital_alff": np.random.normal(0.53, 0.09, n_per_class),
-        "right_parietal_alff": np.random.normal(0.52, 0.09, n_per_class),
+        "right_temporal_alff": np.random.normal(0.52, 0.10, n_per_class),
+        "left_temporal_alff": np.random.normal(0.49, 0.10, n_per_class),
+        "right_occipital_alff": np.random.normal(0.48, 0.09, n_per_class),
+        "left_occipital_alff": np.random.normal(0.46, 0.09, n_per_class),
+        "right_parietal_alff": np.random.normal(0.45, 0.09, n_per_class),
 
         # Functional connectivity-style features
         # Simulated altered connectivity pattern
-        "temporal_occipital_connectivity": np.random.normal(0.40, 0.12, n_per_class),
-        "temporal_cerebellum_connectivity": np.random.normal(0.36, 0.12, n_per_class),
-        "frontal_temporal_connectivity": np.random.normal(0.22, 0.12, n_per_class),
-        "parietal_occipital_connectivity": np.random.normal(0.38, 0.12, n_per_class),
+        "temporal_occipital_connectivity": np.random.normal(0.32, 0.15, n_per_class),
+        "temporal_cerebellum_connectivity": np.random.normal(0.28, 0.15, n_per_class),
+        "frontal_temporal_connectivity": np.random.normal(0.26, 0.15, n_per_class),
+        "parietal_occipital_connectivity": np.random.normal(0.33, 0.15, n_per_class),
 
         "label": 1
     })

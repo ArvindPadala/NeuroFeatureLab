@@ -2,6 +2,12 @@ import os
 import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_DATA_PATH = str(PROJECT_ROOT / "data" / "simulated_pte_features.csv")
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "outputs")
+DEFAULT_MODELS_DIR = str(PROJECT_ROOT / "models")
 
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
@@ -21,7 +27,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 
 
-def load_dataset(data_path: str = "data/simulated_pte_features.csv"):
+def load_dataset(data_path: str = DEFAULT_DATA_PATH):
     """
     Load the simulated imaging-derived feature dataset.
 
@@ -91,7 +97,12 @@ def get_models():
     return models
 
 
-def evaluate_models(X, y, output_dir: str = "outputs"):
+def evaluate_models(
+    X,
+    y,
+    output_dir: str = DEFAULT_OUTPUT_DIR,
+    models_dir: str = DEFAULT_MODELS_DIR
+):
     """
     Train/test split + cross-validation model comparison.
 
@@ -103,7 +114,7 @@ def evaluate_models(X, y, output_dir: str = "outputs"):
     """
 
     os.makedirs(output_dir, exist_ok=True)
-    os.makedirs("models", exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X,
@@ -178,10 +189,10 @@ def evaluate_models(X, y, output_dir: str = "outputs"):
     best_model_name = results_df.iloc[0]["model"]
     best_pipeline = trained_pipelines[best_model_name]["pipeline"]
 
-    joblib.dump(best_pipeline, "models/best_model.pkl")
+    joblib.dump(best_pipeline, os.path.join(models_dir, "best_model.pkl"))
 
     # Also save scaler separately for transparency, although the full pipeline is enough
-    joblib.dump(best_pipeline.named_steps["scaler"], "models/scaler.pkl")
+    joblib.dump(best_pipeline.named_steps["scaler"], os.path.join(models_dir, "scaler.pkl"))
 
     # ROC curve
     plt.figure(figsize=(7, 6))
@@ -218,8 +229,8 @@ if __name__ == "__main__":
     print(results_df)
     print(f"\nBest model: {best_model_name}")
     print("\nSaved outputs:")
-    print("- outputs/model_comparison.csv")
-    print("- outputs/roc_curve.png")
-    print("- outputs/confusion_matrix.png")
-    print("- models/best_model.pkl")
-    print("- models/scaler.pkl")
+    print(f"- {os.path.join(DEFAULT_OUTPUT_DIR, 'model_comparison.csv')}")
+    print(f"- {os.path.join(DEFAULT_OUTPUT_DIR, 'roc_curve.png')}")
+    print(f"- {os.path.join(DEFAULT_OUTPUT_DIR, 'confusion_matrix.png')}")
+    print(f"- {os.path.join(DEFAULT_MODELS_DIR, 'best_model.pkl')}")
+    print(f"- {os.path.join(DEFAULT_MODELS_DIR, 'scaler.pkl')}")
