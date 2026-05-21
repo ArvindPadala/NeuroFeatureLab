@@ -1,0 +1,17 @@
+{
+    "right_temporal_lesion_volume": 1.05,
+    "left_temporal_lesion_volume": 1.00,
+    "right_occipital_lesion_volume": 0.82,
+    "left_occipital_lesion_volume": 0.75,
+    "cerebellum_lesion_volume": 0.68,
+    "right_parietal_lesion_volume": 0.90,
+    "right_temporal_alff": 0.44,
+    "left_temporal_alff": 0.43,
+    "right_occipital_alff": 0.41,
+    "left_occipital_alff": 0.40,
+    "right_parietal_alff": 0.39,
+    "temporal_occipital_connectivity": 0.23,
+    "temporal_cerebellum_connectivity": 0.18,
+    "frontal_temporal_connectivity": 0.31,
+    "parietal_occipital_connectivity": 0.27
+}

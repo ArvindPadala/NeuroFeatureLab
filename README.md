@@ -54,6 +54,53 @@ The implementation is located in:
 - `src/alff.py`
 - `notebooks/02_feature_extraction_demo.ipynb`
 
+## Phase 4: Model Training and Evaluation
+
+This phase trains and compares multiple supervised machine learning models on the simulated imaging-derived feature dataset.
+
+Models included:
+
+- Logistic Regression
+- Linear SVM
+- RBF Kernel SVM
+- Random Forest
+- MLP Classifier
+
+Evaluation metrics:
+
+- AUC
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- 5-fold cross-validation AUC mean and standard deviation
+
+Outputs:
+
+- `outputs/model_comparison.csv`
+- `outputs/roc_curve.png`
+- `outputs/confusion_matrix.png`
+- `models/best_model.pkl`
+
+This phase demonstrates a reproducible research-style ML evaluation workflow. The results are based on simulated data and are not clinical predictions.
+
+## Phase 5: Inference and Explainability
+
+This phase demonstrates how to run inference on a new simulated subject-level feature vector and generate model-agnostic feature importance.
+
+Implemented files:
+
+- `src/inference.py`
+- `src/explainability.py`
+- `data/sample_subject_low_risk.json`
+- `data/sample_subject_high_risk.json`
+- `notebooks/04_inference_and_explainability.ipynb`
+
+Example inference command:
+
+```bash
+python src/inference.py --input data/sample_subject_high_risk.json
+
 ## Results
 Show model comparison table.
 
