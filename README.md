@@ -37,6 +37,23 @@ Show folder tree.
 ## Methods implemented
 Explain lesion-style features, connectivity, ALFF, ML models.
 
+## Phase 3: Feature Extraction Demo
+
+This project includes a feature extraction demo using simulated fMRI-like ROI time-series data.
+
+Implemented methods:
+
+- ROI-to-ROI functional connectivity using Pearson correlation
+- Upper-triangle flattening of connectivity matrices into model-ready features
+- ALFF-style low-frequency amplitude feature extraction
+- Combined subject-level feature vector construction
+
+The implementation is located in:
+
+- `src/connectivity.py`
+- `src/alff.py`
+- `notebooks/02_feature_extraction_demo.ipynb`
+
 ## Results
 Show model comparison table.
 
