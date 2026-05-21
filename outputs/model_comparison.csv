@@ -1,0 +1,6 @@
+model,test_auc,accuracy,precision,recall,f1_score,cv_auc_mean,cv_auc_std
+Logistic Regression,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+Linear SVM,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+RBF Kernel SVM,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+Random Forest,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+MLP Classifier,1.0,1.0,1.0,1.0,1.0,1.0,0.0
